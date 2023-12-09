@@ -1,4 +1,4 @@
-import { Form, NavLink, Outlet, useNavigation } from "react-router-dom";
+import { Form, NavLink, Outlet, useNavigation, useSubmit } from "react-router-dom";
 import { useLoaderData } from "react-router-typesafe";
 import { Contact } from "../../contacts";
 import { loader as rootLoader } from "./root.loader";
@@ -8,6 +8,7 @@ export default function Root() {
   const { contacts, q } = useLoaderData<typeof rootLoader>();
 
   const navigation = useNavigation();
+  const submit = useSubmit();
 
   useEffect(() => {
     const element = document.getElementById("q") as HTMLInputElement;
@@ -29,6 +30,9 @@ export default function Root() {
               type='search'
               name='q'
               defaultValue={q || ""}
+              onChange={(event) => {
+                submit(event.currentTarget.form);
+              }}
             />
             <div id='search-spinner' aria-hidden hidden={true} />
             <div className='sr-only' aria-live='polite'></div>
