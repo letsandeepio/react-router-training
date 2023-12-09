@@ -1,9 +1,12 @@
-import { Form } from "react-router-dom";
+import { Form, useNavigate } from "react-router-dom";
 import { loader as ContactLoader } from '../contact/contact.loader';
 import { useLoaderData } from 'react-router-typesafe';
 
 export default function EditContact() {
   const { contact } = useLoaderData<typeof ContactLoader>();
+
+  const navigate = useNavigate();
+
 
   if(!contact) {
     return <div>No contact data</div>
@@ -57,7 +60,9 @@ export default function EditContact() {
       </label>
       <p>
         <button type="submit">Save</button>
-        <button type="button">Cancel</button>
+        <button type="button" onClick={() => {
+            navigate(-1);
+          }}>Cancel</button>
       </p>
     </Form>
   );
