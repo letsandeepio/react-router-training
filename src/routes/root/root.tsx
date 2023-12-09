@@ -2,29 +2,37 @@ import { Form, NavLink, Outlet, useNavigation } from "react-router-dom";
 import { useLoaderData } from "react-router-typesafe";
 import { Contact } from "../../contacts";
 import { loader as rootLoader } from "./root.loader";
-
+import { useEffect } from 'react';
 
 export default function Root() {
-  const { contacts } = useLoaderData<typeof rootLoader>();
+  const { contacts, q } = useLoaderData<typeof rootLoader>();
 
   const navigation = useNavigation();
+
+  useEffect(() => {
+    const element = document.getElementById("q") as HTMLInputElement;
+    if (element !== null) {
+      element.value = q || "";
+    }
+  }, [q]);
 
   return (
     <>
       <div id='sidebar'>
         <h1>React Router Contacts</h1>
         <div>
-          <form id='search-form' role='search'>
+          <Form id='search-form' role='search'>
             <input
               id='q'
               aria-label='Search contacts'
               placeholder='Search'
               type='search'
               name='q'
+              defaultValue={q || ""}
             />
             <div id='search-spinner' aria-hidden hidden={true} />
             <div className='sr-only' aria-live='polite'></div>
-          </form>
+          </Form>
           <Form method='post'>
             <button type='submit'>New</button>
           </Form>
