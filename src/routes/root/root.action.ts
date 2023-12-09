@@ -1,5 +1,5 @@
 import { ActionFunction } from 'react-router-typesafe';
-import { createContact } from '../contacts';
+import { createContact } from '../../contacts';
 
 export const action = (async() =>  {
   const contact = await createContact();

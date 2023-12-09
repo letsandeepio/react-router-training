@@ -5,10 +5,10 @@ import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root from './routes/root';
+import Root from './routes/root/root';
 import { ErrorPage } from './error-page';
-import { loader as rootLoader } from './routes/root.loader';
-import { action as rootAction } from './routes/root.action';
+import { loader as rootLoader } from './routes/root/root.loader';
+import { action as rootAction } from './routes/root/root.action';
 import Contact from './routes/contact';
 
 const router = createBrowserRouter([

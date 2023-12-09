@@ -1,5 +1,5 @@
 import { Form, Link, Outlet } from 'react-router-dom';
-import { Contact } from '../contacts';
+import { Contact } from '../../contacts';
 import { useLoaderData } from 'react-router-typesafe';
 import {loader as rootLoader } from './root.loader';
 
