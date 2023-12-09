@@ -1,7 +1,7 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Form, Link, Outlet } from 'react-router-dom';
 import { Contact } from '../contacts';
 import { useLoaderData } from 'react-router-typesafe';
-import rootLoader from './root.loader';
+import {loader as rootLoader } from './root.loader';
 
 export default function Root() {
 
@@ -30,9 +30,9 @@ export default function Root() {
               aria-live="polite"
             ></div>
           </form>
-          <form method="post">
+          <Form method="post">
             <button type="submit">New</button>
-          </form>
+          </Form>
         </div>
         <nav>
         {contacts.length ? (
