@@ -1,45 +1,42 @@
-import { Form, Link, Outlet } from 'react-router-dom';
-import { Contact } from '../../contacts';
-import { useLoaderData } from 'react-router-typesafe';
-import {loader as rootLoader } from './root.loader';
+import { Form, NavLink, Outlet } from "react-router-dom";
+import { useLoaderData } from "react-router-typesafe";
+import { Contact } from "../../contacts";
+import { loader as rootLoader } from "./root.loader";
 
 export default function Root() {
-
   const { contacts } = useLoaderData<typeof rootLoader>();
 
   return (
     <>
-      <div id="sidebar">
+      <div id='sidebar'>
         <h1>React Router Contacts</h1>
         <div>
-          <form id="search-form" role="search">
+          <form id='search-form' role='search'>
             <input
-              id="q"
-              aria-label="Search contacts"
-              placeholder="Search"
-              type="search"
-              name="q"
+              id='q'
+              aria-label='Search contacts'
+              placeholder='Search'
+              type='search'
+              name='q'
             />
-            <div
-              id="search-spinner"
-              aria-hidden
-              hidden={true}
-            />
-            <div
-              className="sr-only"
-              aria-live="polite"
-            ></div>
+            <div id='search-spinner' aria-hidden hidden={true} />
+            <div className='sr-only' aria-live='polite'></div>
           </form>
-          <Form method="post">
-            <button type="submit">New</button>
+          <Form method='post'>
+            <button type='submit'>New</button>
           </Form>
         </div>
         <nav>
-        {contacts.length ? (
+          {contacts.length ? (
             <ul>
               {contacts.map((contact: Contact) => (
                 <li key={contact.id}>
-                  <Link to={`contacts/${contact.id}`}>
+                  <NavLink
+                    to={`contacts/${contact.id}`}
+                    className={({ isActive, isPending }) =>
+                      isActive ? "active" : isPending ? "pending" : ""
+                    }
+                  >
                     {contact.first || contact.last ? (
                       <>
                         {contact.first} {contact.last}
@@ -48,7 +45,7 @@ export default function Root() {
                       <i>No Name</i>
                     )}{" "}
                     {contact.favorite && <span>★</span>}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -59,8 +56,8 @@ export default function Root() {
           )}
         </nav>
       </div>
-      <div id="detail">
-        <Outlet/>
+      <div id='detail'>
+        <Outlet />
       </div>
     </>
   );
