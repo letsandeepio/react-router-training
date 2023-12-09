@@ -1,15 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Form } from "react-router-dom";
+import { useLoaderData } from 'react-router-typesafe';
+import { loader as ContactLoader } from './contact.loader';
+
 
 export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+
+  const { contact } = useLoaderData<typeof ContactLoader>();
+
+  if(!contact) {
+  return <div>No contact data</div>
+  }
 
   return (
     <div id="contact">

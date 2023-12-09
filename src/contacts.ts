@@ -15,6 +15,9 @@ export interface Contact {
   state?: string;
   zip?: string;
   favorite?: boolean;
+  avatar?: string;
+  twitter?: string;
+  notes?: string;
 }
 
 export async function getContacts(query?: string | undefined) {
