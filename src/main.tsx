@@ -11,6 +11,7 @@ import Root from "./routes/root/root";
 import { action as rootAction } from "./routes/root/root.action";
 import { loader as rootLoader } from "./routes/root/root.loader";
 import { action as destroyAction } from "./routes/destroy/destroy.action";
+import { action as fovoriteAction } from "./routes/contact/favorite.action";
 import Index from './routes';
 
 const router = createBrowserRouter([
@@ -26,6 +27,7 @@ const router = createBrowserRouter([
         path: "/contacts/:contactId",
         element: <Contact />,
         loader: contactLoader,
+        action: fovoriteAction
       },
       {
         path: "contacts/:contactId/edit",

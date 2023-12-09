@@ -10,6 +10,12 @@ export default function Root() {
   const navigation = useNavigation();
   const submit = useSubmit();
 
+  const searching =
+    navigation.location &&
+    new URLSearchParams(navigation.location.search).has(
+      "q"
+    );
+
   useEffect(() => {
     const element = document.getElementById("q") as HTMLInputElement;
     if (element !== null) {
@@ -30,11 +36,15 @@ export default function Root() {
               type='search'
               name='q'
               defaultValue={q || ""}
+              className={searching ? "loading" : ""}
               onChange={(event) => {
-                submit(event.currentTarget.form);
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form, {
+                  replace: !isFirstSearch,
+                });
               }}
             />
-            <div id='search-spinner' aria-hidden hidden={true} />
+            <div id='search-spinner' aria-hidden  hidden={!searching} />
             <div className='sr-only' aria-live='polite'></div>
           </Form>
           <Form method='post'>

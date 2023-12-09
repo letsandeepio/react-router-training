@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Form } from "react-router-dom";
+import { Form, useFetcher } from "react-router-dom";
 import { useLoaderData } from 'react-router-typesafe';
 import { loader as ContactLoader } from './contact.loader';
 
@@ -7,6 +7,7 @@ import { loader as ContactLoader } from './contact.loader';
 export default function Contact() {
 
   const { contact } = useLoaderData<typeof ContactLoader>();
+
 
   if(!contact) {
   return <div>No contact data</div>
@@ -72,10 +73,11 @@ export default function Contact() {
 }
 
 function Favorite({ contact }: any) {
+  const fetcher = useFetcher();
   // yes, this is a `let` for later
   const favorite = contact.favorite;
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={favorite ? "false" : "true"}
@@ -87,6 +89,6 @@ function Favorite({ contact }: any) {
       >
         {favorite ? "★" : "☆"}
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
