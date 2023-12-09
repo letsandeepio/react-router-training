@@ -1,7 +1,13 @@
-import { Form, useLoaderData } from "react-router-dom";
+import { Form } from "react-router-dom";
+import { loader as ContactLoader } from '../contact/contact.loader';
+import { useLoaderData } from 'react-router-typesafe';
 
 export default function EditContact() {
-  const { contact } = useLoaderData();
+  const { contact } = useLoaderData<typeof ContactLoader>();
+
+  if(!contact) {
+    return <div>No contact data</div>
+  }
 
   return (
     <Form method="post" id="contact-form">

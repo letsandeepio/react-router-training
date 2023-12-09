@@ -1,17 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
-import Root from './routes/root/root';
 import { ErrorPage } from './error-page';
-import { loader as rootLoader } from './routes/root/root.loader';
-import { action as rootAction } from './routes/root/root.action';
+import './index.css';
 import Contact from './routes/contact/contact';
 import { loader as contactLoader } from './routes/contact/contact.loader';
 import EditContact from './routes/edit/edit';
+import { action as editAction } from './routes/edit/edit.action';
+import Root from './routes/root/root';
+import { action as rootAction } from './routes/root/root.action';
+import { loader as rootLoader } from './routes/root/root.loader';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +30,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId/edit",
         element: <EditContact />,
+        action: editAction,
         loader: contactLoader,
       },
     ]
