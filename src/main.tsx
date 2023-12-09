@@ -12,7 +12,7 @@ import { action as rootAction } from "./routes/root/root.action";
 import { loader as rootLoader } from "./routes/root/root.loader";
 import { action as destroyAction } from "./routes/destroy/destroy.action";
 import { action as fovoriteAction } from "./routes/contact/favorite.action";
-import Index from './routes';
+import Index from "./routes";
 
 const router = createBrowserRouter([
   {
@@ -22,23 +22,28 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
-      { index: true, element: <Index /> },
       {
-        path: "/contacts/:contactId",
-        element: <Contact />,
-        loader: contactLoader,
-        action: fovoriteAction
-      },
-      {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        action: editAction,
-        loader: contactLoader,
-      },
-      {
-        path: "contacts/:contactId/destroy",
-        action: destroyAction,
-        errorElement: <div>Error while deleting</div>,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: "/contacts/:contactId",
+            element: <Contact />,
+            loader: contactLoader,
+            action: fovoriteAction,
+          },
+          {
+            path: "contacts/:contactId/edit",
+            element: <EditContact />,
+            action: editAction,
+            loader: contactLoader,
+          },
+          {
+            path: "contacts/:contactId/destroy",
+            action: destroyAction,
+            errorElement: <div>Error while deleting</div>,
+          },
+        ],
       },
     ],
   },
