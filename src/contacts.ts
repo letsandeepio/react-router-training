@@ -3,7 +3,7 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
-interface Contact {
+export interface Contact {
   id: string;
   createdAt: number;
   first?: string;
@@ -14,6 +14,7 @@ interface Contact {
   city?: string;
   state?: string;
   zip?: string;
+  favorite?: boolean;
 }
 
 export async function getContacts(query?: string | undefined) {
