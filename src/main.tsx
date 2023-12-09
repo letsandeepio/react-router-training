@@ -13,6 +13,7 @@ import { action as editAction } from './routes/edit/edit.action';
 import Root from './routes/root/root';
 import { action as rootAction } from './routes/root/root.action';
 import { loader as rootLoader } from './routes/root/root.loader';
+import { action as destroyAction } from './routes/destroy/destroy.action';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         element: <EditContact />,
         action: editAction,
         loader: contactLoader,
+      },
+      {
+        path: "contacts/:contactId/destroy",
+        action: destroyAction,
       },
     ]
   },

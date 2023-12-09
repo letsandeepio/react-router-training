@@ -1,10 +1,13 @@
-import { Form, NavLink, Outlet } from "react-router-dom";
+import { Form, NavLink, Outlet, useNavigation } from "react-router-dom";
 import { useLoaderData } from "react-router-typesafe";
 import { Contact } from "../../contacts";
 import { loader as rootLoader } from "./root.loader";
 
+
 export default function Root() {
   const { contacts } = useLoaderData<typeof rootLoader>();
+
+  const navigation = useNavigation();
 
   return (
     <>
@@ -56,7 +59,10 @@ export default function Root() {
           )}
         </nav>
       </div>
-      <div id='detail'>
+      <div id='detail'
+      className={
+        navigation.state === "loading" ? "loading" : ""
+      }>
         <Outlet />
       </div>
     </>
