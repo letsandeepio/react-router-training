@@ -1,4 +1,4 @@
-import { Form, NavLink, Outlet, useNavigation, useSubmit } from "react-router-dom";
+import { Form, Link, NavLink, Outlet, useNavigation, useSubmit } from "react-router-dom";
 import { useLoaderData } from "react-router-typesafe";
 import { Contact } from "../../contacts";
 import { loader as rootLoader } from "./root.loader";
@@ -77,6 +77,7 @@ export default function Root() {
           ) : (
             <p>
               <i>No contacts</i>
+              <Link to="xyz"></Link>
             </p>
           )}
         </nav>
